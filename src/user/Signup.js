@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { signup } from "../auth";
 import { Link } from "react-router-dom";
 import SocialLogin from "./SocialLogin";
+import app from "./../base"
 
 class Signup extends Component {
     constructor() {
@@ -19,7 +20,14 @@ class Signup extends Component {
     handleChange = name => event => {
         this.setState({ error: "" });
         this.setState({ [name]: event.target.value });
+
+
     };
+
+   
+    
+
+
 
     recaptchaHandler = e => {
         this.setState({ error: "" });
@@ -63,9 +71,14 @@ class Signup extends Component {
         };
         // console.log(user);
         if (this.state.recaptcha) {
-            signup(user).then(data => {
-                if (data.error) this.setState({ error: data.error });
-                else
+            signup(user).then(async data => {
+                if (data.error){
+                    this.setState({ error: data.error });
+                }
+                else{
+                await app
+                .auth()
+                .createUserWithEmailAndPassword(email.trim(), password);
                     this.setState({
                         error: "",
                         name: "",
@@ -73,7 +86,7 @@ class Signup extends Component {
                         password: "",
                         open: true
                     });
-            });
+            }});
         } else {
             this.setState({
                 error: "What day is today? Please write a correct answer!"

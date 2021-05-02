@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import Chat from './chat/chat'
 import Home from "./core/Home";
 import Menu from "./core/Menu";
 import Signup from "./user/Signup";
@@ -28,6 +29,7 @@ const MainRouter = () => (
                 path="/reset-password/:resetPasswordToken"
                 component={ResetPassword}
             />
+            <PrivateRoute exact path ="/chat/:userId" component={Chat} />
             <PrivateRoute exact path="/post/create" component={NewPost} />
             <Route exact path="/post/:postId" component={SinglePost} />
             <PrivateRoute
