@@ -1,6 +1,10 @@
 
 ### To run this project, do the following:
 
+
+## Demo Link
+### <a href="devsync.tech">DevSync</a>
+
 ##### create .env with the following code (update credentials). Make sure to create .env in the root of the project, not inside /src. react-front/.env
 
 ```
